@@ -1,0 +1,17 @@
+.App {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+body {
+  background-image: url('./img/sft_tile.png');
+  background-attachment: fixed;
+  background-size: 14%;
+  min-height: 100vh;
+}
