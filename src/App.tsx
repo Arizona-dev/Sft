@@ -1,12 +1,12 @@
-import "./App.css";
 import { useMemo } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./store";
+
+import "./App.css";
 
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 
+import Home from "./components/Home";
 import Mint from "./Mint";
 import Sft from "./components/Sft";
 import { ConfettiProvider } from "./confetti";
@@ -49,7 +49,7 @@ const connection = new anchor.web3.Connection(rpcHost);
 
 const startDateSeed = parseInt(process.env.REACT_APP_CANDY_START_DATE!, 10);
 
-const txTimeout = 30000; // milliseconds (confirm this works for your project)
+const txTimeout = 30000;
 
 const theme = createTheme({
   palette: {
@@ -92,47 +92,35 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <ConnectionProvider endpoint={endpoint}>
-          <WalletProvider wallets={wallets} autoConnect={true}>
-            <WalletDialogProvider>
-              <Navbar connection={connection} />
-              <Routes>
-                <Route path="/mint" element={<MintRoute />} />
-                <Route path="/mysft" element={<SftRoute />} />
-              </Routes>
-              {/* <Footer /> */}
-            </WalletDialogProvider>
-          </WalletProvider>
-        </ConnectionProvider>
-      </Provider>
+      <ConnectionProvider endpoint={endpoint}>
+        <WalletProvider wallets={wallets} autoConnect={true}>
+          <WalletDialogProvider>
+            <Navbar connection={connection} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/mint"
+                element={
+                  <ConfettiProvider>
+                    <Mint
+                      candyMachineId={candyMachineId}
+                      config={config}
+                      connection={connection}
+                      startDate={startDateSeed}
+                      treasury={treasury}
+                      txTimeout={txTimeout}
+                    />
+                  </ConfettiProvider>
+                }
+              />
+              <Route path="/mysft" element={<Sft connection={connection} />} />
+            </Routes>
+            {/* <Footer /> */}
+          </WalletDialogProvider>
+        </WalletProvider>
+      </ConnectionProvider>
     </ThemeProvider>
   );
 };
-
-function MintRoute() {
-  return (
-    <>
-      <ConfettiProvider>
-        <Mint
-          candyMachineId={candyMachineId}
-          config={config}
-          connection={connection}
-          startDate={startDateSeed}
-          treasury={treasury}
-          txTimeout={txTimeout}
-        />
-      </ConfettiProvider>
-    </>
-  );
-}
-
-function SftRoute() {
-  return (
-    <>
-      <Sft />
-    </>
-  );
-}
 
 export default App;

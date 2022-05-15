@@ -1,51 +1,44 @@
 import { useEffect, useState } from "react";
-import { usePopper } from "react-popper";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 import * as anchor from "@project-serum/anchor";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
-import { connectUserWallet } from "../actions/walletSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators, State } from "../state";
+
+import { isMobile } from 'react-device-detect';
 
 import { shortenAddress } from "../candy-machine";
 
-import { useSelector, useDispatch } from "react-redux";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
 const ConnectButton = styled(WalletDialogButton)``;
-
+const MintContainer = styled.div``;
 export interface NavbarProps {
   connection: anchor.web3.Connection;
 }
 
 const Navbar = (props: NavbarProps) => {
-  const [active, setActive] = useState(false);
-  const [referenceElement, setReferenceElement] = useState(null);
-  const [popperElement, setPopperElement] = useState(null);
-  const [arrowElement, setArrowElement] = useState(null);
   const [mobileNav, setMobileNav] = useState(false);
-  const [balance, setBalance] = useState<number>();
 
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    modifiers: [{ name: "arrow", options: { element: arrowElement } }],
-  });
-
-  const MintContainer = styled.div``;
   const wallet = useAnchorWallet();
   const dispatch = useDispatch();
+
+  const { setWalletAddress, setWalletBalance } = bindActionCreators(actionCreators, dispatch);
+  const walletAddress = useSelector((state: State) => state.wallet);
+  const balanceState = useSelector((state: State) => state.balance);
 
   useEffect(() => {
     (async () => {
       if (wallet) {
         const balance = await props.connection.getBalance(wallet.publicKey);
-        setBalance(balance / LAMPORTS_PER_SOL);
-        const onConnectUserWallet = (pubKey: string) => {
-          dispatch(connectUserWallet(pubKey));
-        };
-        onConnectUserWallet(String(wallet?.publicKey));
+        setWalletBalance(balance / LAMPORTS_PER_SOL);
+        setWalletAddress(wallet.publicKey.toString());
       }
     })();
-  }, [wallet, props.connection, dispatch]);
+  }, [wallet, props.connection, setWalletBalance, setWalletAddress]);
 
   return (
     <nav className="bg-white shadow-lg">
@@ -54,11 +47,10 @@ const Navbar = (props: NavbarProps) => {
           <div className="flex lg:w-3/12 justify-start md:justify-center">
             <Link to="/" className="flex">
               <svg
-                width="190px"
+                width="140px"
                 height="80px"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="150.2400329589844 34.99501953125 199.51993408203126 80.0099609375"
-                className="background: rgba(0, 0, 0, 0);"
                 preserveAspectRatio="xMidYMid"
               >
                 <defs>
@@ -195,18 +187,17 @@ const Navbar = (props: NavbarProps) => {
                 Home
               </NavLink>
               <NavLink to="/mint" className="py-4 px-2">
-                Presale
+                Mint
               </NavLink>
               <NavLink to="/mysft" className="py-4 px-2">
                 MySFT
               </NavLink>
-              <NavLink to="/search" className="py-4 px-2">
+              {/* <NavLink to="/search" className="py-4 px-2">
                 SearchSFT
-              </NavLink>
+              </NavLink> */}
               <button
-                className={`py-4 px-2 inline-flex cursor-pointer justify-center`}
+                className={`py-4 px-2 inline-flex justify-center dropdown--button`}
                 type="button"
-                onClick={() => (active ? setActive(false) : setActive(true))}
               >
                 Other
                 <svg
@@ -222,11 +213,7 @@ const Navbar = (props: NavbarProps) => {
                     clipRule="evenodd"
                   />
                 </svg>
-                <div
-                  className={`${
-                    active ? "fixed" : "hidden"
-                  } bg-white rounded-b-md shadow-lg top-20 w-28 py-2`}
-                >
+                <div className="bg-white rounded-b-md shadow-lg pt-6 top-14 w-28 py-2 z-50 dropdown--hide">
                   <NavLink
                     to="assets"
                     className="p-1 block w-full whitespace-nowrap"
@@ -245,10 +232,11 @@ const Navbar = (props: NavbarProps) => {
           </div>
           <div className="flex lg:mx-4">
             <MintContainer>
-              {!wallet ? (
-                <ConnectButton type="button">
-                  <p className="text-xs w-28 text-center">Connect Wallet</p>
-                </ConnectButton>
+              {!isMobile && (
+                !wallet ? (
+                  <ConnectButton type="button">
+                    <p className="text-xs sm:w-22 md:w-28 text-center">Connect Wallet</p>
+                  </ConnectButton>
               ) : (
                 <div className="border-2 rounded-md px-2 py-1 w-36 border-green-400">
                   {wallet && (
@@ -259,10 +247,17 @@ const Navbar = (props: NavbarProps) => {
                   )}
                   {wallet && (
                     <p className="text-xs">
-                      <b>Balance</b> {(balance || 0).toLocaleString()} SOL
+                      <b>Balance</b> {(balanceState || 0).toLocaleString()} SOL
                     </p>
                   )}
                 </div>
+              ))}
+              {isMobile && (
+                <div className="border-2 rounded-md px-1 w-36 border-green-400">
+                  <p className="text-xs">
+                    Can't connect wallet from a mobile device, please use a computer
+                  </p>
+              </div>
               )}
             </MintContainer>
           </div>
@@ -333,7 +328,7 @@ const Navbar = (props: NavbarProps) => {
             </li>
             <li>
               <NavLink to="mint" className="block py-4 px-2">
-                Presale
+                Mint
               </NavLink>
             </li>
             <li>
@@ -341,11 +336,11 @@ const Navbar = (props: NavbarProps) => {
                 MySFT
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="search" className="block py-4 px-2">
                 SearchSFT
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="assets" className="block py-4 px-2">
                 Assets

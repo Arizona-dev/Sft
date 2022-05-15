@@ -112,3 +112,17 @@ li a.active.router-link-exact-active {
   stroke-dashoffset: -134;
   stroke-width: 6;
 }
+
+.dropdown--hide {
+  display: none;
+}
+
+button.dropdown--button:hover > div.dropdown--hide {
+  position: fixed;
+  display: block;
+}
+
+.dropdown--hide:hover {
+  position: fixed;
+  display: block;
+}
