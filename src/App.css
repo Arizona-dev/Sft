@@ -10,8 +10,5 @@
 }
 
 body {
-  background-image: url('./img/sft_tile.png');
-  background-attachment: fixed;
-  background-size: 14%;
   min-height: 100vh;
 }

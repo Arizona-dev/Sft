@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
-import MastHead from "./MastHead";
-import Roadmap from "./Roadmap"
+import MastHead from "../components/MastHead"
+import Roadmap from "../components/Roadmap"
+import Socials from "../components/Socials"
 
 const Home: React.FC = () => {
   return (
     <>
       <MastHead />
       <Roadmap />
+      <Socials />
       {/* <div className="h-full flex">
         <div className="flex-1 flex flex-col overflow-hidden">
           <div className="flex-1 flex items-stretch overflow-hidden">

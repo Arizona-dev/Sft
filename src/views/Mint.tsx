@@ -6,7 +6,7 @@ import Alert from "@material-ui/lab/Alert";
 import confetti from "canvas-confetti";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreators, State } from "./state";
+import { actionCreators, State } from "../state";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 import * as anchor from "@project-serum/anchor";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
@@ -16,7 +16,7 @@ import {
   awaitTransactionSignatureConfirmation,
   getCandyMachineState,
   mintOneToken,
-} from "./candy-machine";
+} from "../candy-machine";
 
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
@@ -53,6 +53,7 @@ const Mint = (props: MintProps) => {
   const [isActive, setIsActive] = useState(false); // true when countdown completes
   const [isSoldOut, setIsSoldOut] = useState(false); // true when items remaining is zero
   const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
+  const [loading, setLoading] = useState(false);
 
   const [itemsAvailable, setItemsAvailable] = useState(0);
   // const [itemsRedeemed, setItemsRedeemed] = useState(0);
@@ -64,20 +65,17 @@ const Mint = (props: MintProps) => {
     severity: undefined,
   });
 
-  const dispatch = useDispatch();
-  const { setWalletBalance } = bindActionCreators(actionCreators, dispatch);
-  const balanceState = useSelector((state: State) => state.balance);
-
   const [startDate, setStartDate] = useState(new Date(props.startDate));
 
   const wallet = useAnchorWallet();
 
   const [candyMachine, setCandyMachine] = useState<CandyMachine>();
 
+  const dispatch = useDispatch();
+  // const balanceState = useSelector((state: State) => state.balance);
+
   const refreshCandyMachineState = () => {
     (async () => {
-      if (!wallet) return;
-
       const {
         candyMachine,
         goLiveDate,
@@ -89,6 +87,10 @@ const Mint = (props: MintProps) => {
         props.candyMachineId,
         props.connection
       );
+      if (!wallet || loading) return;
+      setLoading(true);
+
+      const { setWalletBalance } = bindActionCreators(actionCreators, dispatch);
 
       const balance = await props.connection.getBalance(wallet.publicKey);
       setWalletBalance(balance / LAMPORTS_PER_SOL);
@@ -125,10 +127,11 @@ const Mint = (props: MintProps) => {
         if (!status?.err) {
           setAlertState({
             open: true,
-            message: "Congratulations! Mint succeeded!",
+            message: "Congratulations! Mint succeeded! 🎉",
             severity: "success",
           });
           confetti();
+          setLoading(false);
           refreshCandyMachineState();
         } else {
           setAlertState({
@@ -163,11 +166,18 @@ const Mint = (props: MintProps) => {
       });
     } finally {
       setIsMinting(false);
+      setLoading(false);
       refreshCandyMachineState();
     }
   };
 
-  useEffect(refreshCandyMachineState, [wallet, props.candyMachineId, props.connection, setWalletBalance]);
+  useEffect(refreshCandyMachineState, [
+    wallet,
+    props.candyMachineId,
+    props.connection,
+    dispatch,
+    loading,
+  ]);
 
   return (
     <>
@@ -241,45 +251,7 @@ const Mint = (props: MintProps) => {
                     </span>
                     <div className="flex flex-col sm:flex-row mt-2 justify-around items-center my-5">
                       <div className="text-sm md:text-base font-mono w-1/2">
-                        {itemsRemaining >= itemsAvailable - presaleSupply ? (
-                          <div className="flex items-center price">
-                            <p className="mr-3">Price :</p>
-                            <span className="flex items-center mr-4 price--discounted">
-                              <img
-                                src="/sol-badge.svg"
-                                alt="sol-badge"
-                                className="h-4 w-4 mr-1"
-                              />
-                              1.5
-                            </span>
-                            <span className="flex items-center price--regular">
-                              <img
-                                src="/sol-badge.svg"
-                                alt="sol-badge"
-                                className="h-4 w-4 mr-1"
-                              />
-                              2
-                            </span>
-                          </div>
-                        ) : (
-                          <div className="flex items-center price">
-                            <p className="mr-3 font-bold">Price :</p>
-                            <span className="flex items-center price--discounted">
-                              <img
-                                src="/sol-badge.svg"
-                                alt="sol-badge"
-                                className="h-4 w-4 mr-1"
-                              />
-                              2 + <i> transaction fees</i>
-                            </span>
-                          </div>
-                        )}
-                        <div className="mt-2">
-                          {wallet && (
-                            <p className="">Supply left : {itemsRemaining}</p>
-                          )}
-                        </div>
-                        <div className="flex items-center mt-2">
+                        <div className="flex items-center price">
                           <p className="mr-3 font-bold">Price :</p>
                           <span className="flex items-center price--discounted">
                             <img
@@ -287,20 +259,35 @@ const Mint = (props: MintProps) => {
                               alt="sol-badge"
                               className="h-4 w-4 mr-1"
                             />
-                            1.5 + <i> transaction fees</i>
+                            2 <i>+ transaction fees</i>
                           </span>
+                        </div>
+                        <div className="mt-2 flex">
+                          {wallet ? (
+                            <>
+                              <p className="mr-3 font-bold">Supply left: </p>
+                              {itemsRemaining}
+                            </>
+                          ) : (
+                            <p className="font-bold">
+                              Supply left: Connect wallet to see remaining
+                              supply
+                            </p>
+                          )}
                         </div>
                       </div>
                       <div className="mt-10 sm:mt-0">
                         <MintContainer>
                           {!wallet ? (
                             <ConnectButton type="button">
-                              <p className="text-xs sm:w-22 md:w-28 text-center">Connect your wallet to mint</p>
+                              <p className="text-xs sm:w-22 md:w-28 text-center">
+                                Connect your wallet to mint
+                              </p>
                             </ConnectButton>
+                          ) : (
                             // <p className="py-2 text-center bg-indigo-500 shadow-md text-white rounded-md px-4">
                             //   Connect your wallet to mint
                             // </p>
-                          ) : (
                             <div className="flex justify-center">
                               {itemsRemaining < presaleSupply &&
                               itemsRemaining !== 0 ? (
@@ -322,7 +309,12 @@ const Mint = (props: MintProps) => {
                                     isMinting ? (
                                       <div className="">
                                         <Loader />
-                                        <p className="text-indigo-500 pl-4">Approve transaction from your wallet. <br />Minting will take a few seconds please wait.</p>
+                                        <p className="text-indigo-500 pl-4">
+                                          Approve transaction from your wallet.{" "}
+                                          <br />
+                                          Minting will take a few seconds please
+                                          wait.
+                                        </p>
                                       </div>
                                     ) : (
                                       <p className="text-lg w-28 text-center">

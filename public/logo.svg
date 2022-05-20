@@ -1,0 +1,48 @@
+<svg width="199.51993408203126px" height="80.0099609375px"
+  xmlns="http://www.w3.org/2000/svg" viewBox="150.2400329589844 34.99501953125 199.51993408203126 80.0099609375" style="background: rgba(0, 0, 0, 0);" preserveAspectRatio="xMidYMid">
+  <defs>
+    <linearGradient id="editing-shiny-gradient" x1="0.5087262032186417" x2="0.49127379678135824" y1="0.00007615242180436521" y2="0.9999238475781956" gradientUnits="objectBoundingBox">
+      <stop offset="0.0" stop-color="#00ffa3"></stop>
+      <stop offset="0.5" stop-color="#03e1ff"></stop>
+      <stop offset="1.0" stop-color="#dc1fff"></stop>
+    </linearGradient>
+    <linearGradient id="editing-shiny-gradient2" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0.2" stop-color="#fff" stop-opacity="0.8"></stop>
+      <stop offset="0.8" stop-color="#fff" stop-opacity="0"></stop>
+    </linearGradient>
+    <filter id="editing-shiny2" x="-100%" y="-100%" width="300%" height="300%">
+      <feMorphology operator="erode" radius="2"></feMorphology>
+    </filter>
+    <filter id="editing-shiny" x="-100%" y="-100%" width="300%" height="300%">
+      <feFlood flood-color="#fff" result="flood"></feFlood>
+      <feConvolveMatrix in="SourceGraphic" result="conv" order="8,8" divisor="1" kernelMatrix="0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 1 1 0 0 0 0 0 1 0 0 1 0 0 0 0 1 0 0 1 0 0 0 1 0 0 0 0 1 0 0 1 1 0 0 1 1 0 0 0 0 1 1 0 0 0 "></feConvolveMatrix>
+      <feOffset dx="0" dy="4" in="conv" result="offset"></feOffset>
+      <feComposite operator="in" in="flood" in2="offset" result="comp"></feComposite>
+      <feGaussianBlur in="offset" stdDeviation="3" result="shadow"></feGaussianBlur>
+      <feColorMatrix in="shadow" type="matrix" values="0.7 0 0 0 0  0 0.7 0 0 0  0 0 0.7 0 0  0 0 0 0.3 0" result="dark-shadow"></feColorMatrix>
+      <feOffset dx="0" dy="4" in="dark-shadow" result="offset-shadow"></feOffset>
+      <feOffset dx="0" dy="2" in="conv" result="offset-2"></feOffset>
+      <feComposite operator="out" in="offset" in2="offset-2" result="edge-diff"></feComposite>
+      <feGaussianBlur in="edge-diff" stdDeviation="1" result="edge-blur"></feGaussianBlur>
+      <feColorMatrix in="edge-blur" result="edge-shadow" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0"></feColorMatrix>
+      <feComposite operator="in" in="edge-shadow" in2="offset" result="edge-shadow-in"></feComposite>
+      <feOffset dx="0" dy="1" in="edge-shadow-in" result="edge-shadow-final"></feOffset>
+      <feMerge result="out">
+        <feMergeNode in="offset-shadow"></feMergeNode>
+        <feMergeNode in="comp"></feMergeNode>
+        <feMergeNode in="edge-shadow-final"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#editing-shiny)">
+    <g transform="translate(186.75, 94.25)">
+      <path d="M33-5.50L5.50-5.50L5.50-11L0-11L0-16.50L11-16.50L11-11L27.50-11L27.50-22L5.50-22L5.50-27.50L0-27.50L0-38.50L5.50-38.50L5.50-44L33-44L33-38.50L38.50-38.50L38.50-33L27.50-33L27.50-38.50L11-38.50L11-27.50L33-27.50L33-22L38.50-22L38.50-11L33-11L33-5.50ZM55-5.50L44-5.50L44-44L82.50-44L82.50-38.50L55-38.50L55-27.50L77-27.50L77-22L55-22L55-5.50ZM115.50-5.50L104.50-5.50L104.50-38.50L93.50-38.50L93.50-44L126.50-44L126.50-38.50L115.50-38.50L115.50-5.50Z" fill="url(#editing-shiny-gradient)"></path>
+    </g>
+  </g>
+  <g filter="url(#editing-shiny2)">
+    <g transform="translate(186.75, 94.25)">
+      <path d="M33-5.50L5.50-5.50L5.50-11L0-11L0-16.50L11-16.50L11-11L27.50-11L27.50-22L5.50-22L5.50-27.50L0-27.50L0-38.50L5.50-38.50L5.50-44L33-44L33-38.50L38.50-38.50L38.50-33L27.50-33L27.50-38.50L11-38.50L11-27.50L33-27.50L33-22L38.50-22L38.50-11L33-11L33-5.50ZM55-5.50L44-5.50L44-44L82.50-44L82.50-38.50L55-38.50L55-27.50L77-27.50L77-22L55-22L55-5.50ZM115.50-5.50L104.50-5.50L104.50-38.50L93.50-38.50L93.50-44L126.50-44L126.50-38.50L115.50-38.50L115.50-5.50Z" fill="url(#editing-shiny-gradient2)"></path>
+    </g>
+  </g>
+</svg>

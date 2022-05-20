@@ -1,10 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap');
+
+:root {
+  --sblack: 25, 28, 36;
+}
 
 html,
 body {
   background-color: #fff;
+  font-size: 16px;
 }
 
 .bg-custom-black {
@@ -20,7 +26,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -58,7 +64,8 @@ li a.active.router-link-exact-active {
   line-height: 150%;
   color: #0b2437;
 }
-.price--regular, .price--discounted {
+.price--regular,
+.price--discounted {
   font-weight: 300;
 }
 .price--regular {
@@ -125,4 +132,67 @@ button.dropdown--button:hover > div.dropdown--hide {
 .dropdown--hide:hover {
   position: fixed;
   display: block;
+}
+
+a.button-sft {
+  border: 2px solid #191c25;
+}
+
+a.button-sft:hover {
+  border: 2px solid rgba(52, 211, 153, 1);
+  background-color: var(--sblack);
+  color: rgba(52, 211, 153, 1);
+}
+
+a.button-sft:hover img {
+  transition-duration: 300ms;
+  filter: invert(25%) sepia(70%) saturate(337%) hue-rotate(93deg)
+    brightness(80%) contrast(99%);
+}
+
+button.wallet-btn {
+  border: 2px solid rgb(var(--sblack)) !important;
+  background-color: rgb(var(--sblack)) !important;
+}
+
+button.wallet-btn:hover {
+  border: 2px solid rgba(52, 211, 153, 1) !important;
+  background-color: white !important;
+  color: rgba(52, 211, 153, 1) !important;
+  transition-duration: 300ms !important;
+}
+
+.nav-font {
+  color: #191c25;
+  font-family: 'Syne', sans-serif;
+}
+
+.font-syne {
+  font-family: 'Syne', sans-serif;
+}
+
+.underline-offset-2	{
+  text-underline-offset: 2px;
+}
+
+.underline-offset-4	{
+  text-underline-offset: 4px;
+}
+
+.underline-offset-6	{
+  text-underline-offset: 8px;
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20vh);
+  visibility: hidden;
+  transition: opacity 0.8s ease-out, transform 1.4s ease-out;
+  will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
 }

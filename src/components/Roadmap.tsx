@@ -126,7 +126,7 @@ const Roadmap: React.FC = () => {
 
                     <div className="order-1 w-5/12 px-1 py-4">
                     <p className="mb-3 text-base text-green-400 text-left">
-                        Stage 6 - Q4 2024
+                        Stage 6 - Q4 2022
                       </p>
                       <h4 className="mb-3 font-bold text-lg md:text-2xl text-left">
                         SFT MechKey Pre-Order

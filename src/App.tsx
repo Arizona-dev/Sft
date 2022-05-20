@@ -6,9 +6,9 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
 
-import Home from "./components/Home";
-import Mint from "./Mint";
-import Sft from "./components/Sft";
+import Home from "./views/Home";
+import Mint from "./views/Mint";
+import Sft from "./views/Sft";
 import { ConfettiProvider } from "./confetti";
 
 import * as anchor from "@project-serum/anchor";

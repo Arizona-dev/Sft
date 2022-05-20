@@ -1,10 +1,11 @@
 import React from "react";
+import FadeInSection from "./FadeInSection";
 
 const MastHead: React.FC = () => {
   return (
-    <div>
+    <>
       <div className="min-h-screen flex flex-col items-center justify-center">
-        <video
+        {/* <video
           autoPlay
           loop
           muted
@@ -12,63 +13,98 @@ const MastHead: React.FC = () => {
           className="absolute w-full h-full object-cover"
         >
           <source src="/assets/vecteezy_1.mp4" type="video/mp4" />
-        </video>
-        <div className={`flex-grow-0 pt-10 transition-opacity duration-1000`}>
-          <img
-            src="/assets/logo.png"
-            alt="logo"
-            width={128 / 3}
-            height={114 / 3}
-          />
-        </div>
-        <div className="font-bold z-10 text-white opacity-90 text-center flex flex-col items-center justify-center">
-          <h1 className="p-1 text-6xl xl:text-5xl bg-black bg-gradient-to-r from-green-500 via-blue-500 to-purple-500">Solana Funky Trolls</h1>
-          <h2 className="mt-4 p-1 text-4xl xl:text-3xl tracking-tight bg-black">
-            They're out !
-          </h2>
-        </div>
-        <div className="flex-grow-0 pb-20">
-          <img
-            src="/assets/arrow-down.png"
-            width={188 / 3}
-            height={105 / 3}
-            alt="scroll down"
-          />
-        </div>
-      </div>
-      <section>
-        <div className="flex flex-col items-start md:flex-row mx-10 my-20">
-          <div className="md:w-1/2 bg-blue-50 rounded-lg p-6">
-            <p className="text-lg md:text-2xl text-green-400 font-medium uppercase tracking-wide mb-2">
-              Solana Funky Trolls
-            </p>
-            <p className="text-sm md:text-base custom-black tracking-wide mb-2">
-              From the darkest forest to icy mountains, there is always a troll.
-              Trolling is a way of life, now there is a path to do it with
-              style!
-            </p>
-            <p className="text-sm md:text-base custom-black tracking-wide mb-2">
-              The SFT is a collection of 9,999 unique randomly generated
-              FunkyTrolls stored on the Solana blockchain. With a minting cost
-              of 2 SOL, get a chance to get the rarest ones and show your troll
-              attitude!
-            </p>
-            <p className="text-sm md:text-base custom-black tracking-wide mb-2">
-              The holders will be rewarded on an ongong basis and a
-              specific wallet will be setup to block funds on long-term
-              stacking.
-            </p>
-          </div>
-          <div className="md:w-1/2">
+        </video> */}
+        <FadeInSection>
+          <div className="font-syne text-center flex flex-col items-center mx-2">
+            <h1 className="font-medium text-6xl xl:text-5xl">
+              We are Solana Funky Trolls
+            </h1>
             <img
-              className="mx-auto -mt-10"
-              src="../assets/sft_preview.gif"
-              alt="sft preview"
+              className="hidden md:flex max-w-5xl xl:max-w-3xl -mt-3"
+              src="/assets/images/tree.png"
+              alt="divider"
             />
+            <h2 className="text-3xl xl:text-2xl underline-offset-6 mt-3 md:-mt-3">
+              A NFT community on the <u>Solana</u> blockchain
+            </h2>
           </div>
-        </div>
+        </FadeInSection>
+      </div>
+      <hr></hr>
+      <section>
+        {/* What is solana funky trolls? */}
+        <FadeInSection>
+          <div className="md:flex pt-10 md:pt-20 pb-20 mx-6 md:mx-10 lg:py-32">
+            <div className="md:w-1/2 lg:text-right sm:flex lg:flex-row-reverse relative">
+              <div className="lg:text-right lg:pr-24">
+                <p className="text-xl md:text-2xl lg:text-4xl font-syne font-bold">
+                  WHAT IS
+                  <span className="lg:w-full md:block">
+                    {" "}
+                    SOLANA FUNKY TROLLS?
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className="md:w-1/2 text-base lg:pr-40 pt-10 md:pt-0 tracking-wide">
+              <p>
+                From the darkest forest to icy mountains, there is always a troll.
+                Trolling is a way of life, now there is a path to do it with
+                style!
+              </p>
+              <p className="mt-3">
+                The SFT collection supply consists of 10 000 unique Funky Trolls that can be minted on the Solana blockchain.
+              </p>
+              <p className="mt-3">
+                Each troll is randomly generated from over 200 possible traits across 10 layers.
+              </p>
+            </div>
+          </div>
+        </FadeInSection>
+        {/* How much sft can I mint? */}
+        <FadeInSection>
+          <div className="md:flex md:pt-20 pb-20 mx-6 md:mx-20 lg:py-32">
+            <div className="md:w-1/2 lg:order-2 lg:flex-row-reverse relative">
+              <div className="lg:text-left lg:pr-24">
+                <p className="text-xl md:text-2xl lg:text-4xl font-syne font-bold">
+                  HOW MUCH SFT
+                  <span className="lg:w-full md:block"> CAN I MINT?</span>
+                </p>
+              </div>
+            </div>
+            <div className="md:w-1/2 lg:text-right lg:order-1 lg:flex-row-reverse text-base lg:pl-10 lg:pr-24 2xl: pt-10 md:pt-0 tracking-wide">
+              <p>
+                9 925 SFT can be minted on the Solana blockchain as 75 SFT is kept in reserve for marketing, airdrops and events purposes.
+              </p>
+              <p className="mt-3">
+                Minting quantity is not limited per wallet. If you want to buy more than one, just repeat the process.
+              </p>
+            </div>
+          </div>
+        <FadeInSection>
+        {/* Where is stored the metadata? */}
+        </FadeInSection>
+          <div className="md:flex pt-10 md:pt-20 pb-20 mx-6 md:mx-10 lg:py-32">
+            <div className="md:w-1/2 lg:text-right sm:flex lg:flex-row-reverse relative">
+              <div className="lg:text-right lg:pr-24">
+                <p className="text-xl md:text-2xl lg:text-4xl font-syne font-bold">
+                  WHERE IS STORED
+                  <span className="lg:w-full md:block">
+                    {" "}
+                    THE METADATA?
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className="md:w-1/2 text-base lg:pr-40 pt-10 md:pt-0 tracking-wide">
+              <p>
+                The Solana Funky Trolls' metadata is stored on Arwaeve, a permanent decentralised data storage.
+              </p>
+            </div>
+          </div>
+        </FadeInSection>
       </section>
-    </div>
+    </>
   );
 };
 

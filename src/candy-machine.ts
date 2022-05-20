@@ -66,10 +66,10 @@ export const awaitTransactionSignatureConfirmation = async (
             confirmations: 0,
           };
           if (result.err) {
-            console.log("Rejected via websocket", result.err);
+            // console.log("Rejected via websocket", result.err);
             reject(status);
           } else {
-            console.log("Resolved via websocket", result);
+            // console.log("Resolved via websocket", result);
             resolve(status);
           }
         },
@@ -117,7 +117,7 @@ export const awaitTransactionSignatureConfirmation = async (
     connection.removeSignatureListener(subId);
   }
   done = true;
-  console.log("Returning status", status);
+  // console.log("Returning status", status);
   return status;
 }
 

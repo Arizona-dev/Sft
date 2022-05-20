@@ -7,14 +7,13 @@ import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "../state";
-
-import { isMobile } from 'react-device-detect';
+import { isMobile } from "react-device-detect";
 
 import { shortenAddress } from "../candy-machine";
 
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
-const ConnectButton = styled(WalletDialogButton)``;
+const ConnectButton = styled(WalletDialogButton)`wallet-btn`;
 const MintContainer = styled.div``;
 export interface NavbarProps {
   connection: anchor.web3.Connection;
@@ -26,8 +25,11 @@ const Navbar = (props: NavbarProps) => {
   const wallet = useAnchorWallet();
   const dispatch = useDispatch();
 
-  const { setWalletAddress, setWalletBalance } = bindActionCreators(actionCreators, dispatch);
-  const walletAddress = useSelector((state: State) => state.wallet);
+  const { setWalletAddress, setWalletBalance } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
+  // const walletAddress = useSelector((state: State) => state.wallet);
   const balanceState = useSelector((state: State) => state.balance);
 
   useEffect(() => {
@@ -41,148 +43,11 @@ const Navbar = (props: NavbarProps) => {
   }, [wallet, props.connection, setWalletBalance, setWalletAddress]);
 
   return (
-    <nav className="bg-white shadow-lg">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex nav-font justify-items-stretch items-center custom-black">
-          <div className="flex lg:w-3/12 justify-start md:justify-center">
-            <Link to="/" className="flex">
-              <svg
-                width="140px"
-                height="80px"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="150.2400329589844 34.99501953125 199.51993408203126 80.0099609375"
-                preserveAspectRatio="xMidYMid"
-              >
-                <defs>
-                  <linearGradient
-                    id="editing-shiny-gradient"
-                    x1="0.5087262032186417"
-                    x2="0.49127379678135824"
-                    y1="0.00007615242180436521"
-                    y2="0.9999238475781956"
-                    gradientUnits="objectBoundingBox"
-                  >
-                    <stop offset="0.0" stopColor="#00ffa3" />
-                    <stop offset="0.5" stopColor="#03e1ff" />
-                    <stop offset="1.0" stopColor="#dc1fff" />
-                  </linearGradient>
-                  <linearGradient
-                    id="editing-shiny-gradient2"
-                    x1="0"
-                    x2="0"
-                    y1="0"
-                    y2="1"
-                  >
-                    <stop offset="0.2" stopColor="#fff" stopOpacity="0.8" />
-                    <stop offset="0.8" stopColor="#fff" stopOpacity="0" />
-                  </linearGradient>
-                  <filter
-                    id="editing-shiny2"
-                    x="-100%"
-                    y="-100%"
-                    width="300%"
-                    height="300%"
-                  >
-                    <feMorphology operator="erode" radius="2" />
-                  </filter>
-                  <filter
-                    id="editing-shiny"
-                    x="-100%"
-                    y="-100%"
-                    width="300%"
-                    height="300%"
-                  >
-                    <feFlood floodColor="#fff" result="flood" />
-                    <feConvolveMatrix
-                      in="SourceGraphic"
-                      result="conv"
-                      order="8,8"
-                      divisor="1"
-                      kernelMatrix="0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 1 1 0 0 0 0 0 1 0 0 1 0 0 0 0 1 0 0 1 0 0 0 1 0 0 0 0 1 0 0 1 1 0 0 1 1 0 0 0 0 1 1 0 0 0"
-                    />
-                    <feOffset dx="0" dy="4" in="conv" result="offset" />
-                    <feComposite
-                      operator="in"
-                      in="flood"
-                      in2="offset"
-                      result="comp"
-                    />
-                    <feGaussianBlur
-                      in="offset"
-                      stdDeviation="3"
-                      result="shadow"
-                    />
-                    <feColorMatrix
-                      in="shadow"
-                      type="matrix"
-                      values="0.7 0 0 0 0  0 0.7 0 0 0  0 0 0.7 0 0  0 0 0 0.3 0"
-                      result="dark-shadow"
-                    />
-                    <feOffset
-                      dx="0"
-                      dy="4"
-                      in="dark-shadow"
-                      result="offset-shadow"
-                    />
-                    <feOffset dx="0" dy="2" in="conv" result="offset-2" />
-                    <feComposite
-                      operator="out"
-                      in="offset"
-                      in2="offset-2"
-                      result="edge-diff"
-                    />
-                    <feGaussianBlur
-                      in="edge-diff"
-                      stdDeviation="1"
-                      result="edge-blur"
-                    />
-                    <feColorMatrix
-                      in="edge-blur"
-                      result="edge-shadow"
-                      type="matrix"
-                      values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0"
-                    />
-                    <feComposite
-                      operator="in"
-                      in="edge-shadow"
-                      in2="offset"
-                      result="edge-shadow-in"
-                    />
-                    <feOffset
-                      dx="0"
-                      dy="1"
-                      in="edge-shadow-in"
-                      result="edge-shadow-final"
-                    />
-                    <feMerge result="out">
-                      <feMergeNode in="offset-shadow" />
-                      <feMergeNode in="comp" />
-                      <feMergeNode in="edge-shadow-final" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-                <g filter="url(#editing-shiny)">
-                  <g transform="translate(206.875, 88.125)">
-                    <path
-                      d="M22.50-3.75L3.75-3.75L3.75-7.50L0-7.50L0-11.25L7.50-11.25L7.50-7.50L18.75-7.50L18.75-15L3.75-15L3.75-18.75L0-18.75L0-26.25L3.75-26.25L3.75-30L22.50-30L22.50-26.25L26.25-26.25L26.25-22.50L18.75-22.50L18.75-26.25L7.50-26.25L7.50-18.75L22.50-18.75L22.50-15L26.25-15L26.25-7.50L22.50-7.50L22.50-3.75ZM37.50-3.75L30-3.75L30-30L56.25-30L56.25-26.25L37.50-26.25L37.50-18.75L52.50-18.75L52.50-15L37.50-15L37.50-3.75ZM78.75-3.75L71.25-3.75L71.25-26.25L63.75-26.25L63.75-30L86.25-30L86.25-26.25L78.75-26.25L78.75-3.75Z"
-                      fill="url(#editing-shiny-gradient)"
-                    />
-                  </g>
-                </g>
-                <g filter="url(#editing-shiny2)">
-                  <g transform="translate(206.875, 88.125)">
-                    <path
-                      d="M22.50-3.75L3.75-3.75L3.75-7.50L0-7.50L0-11.25L7.50-11.25L7.50-7.50L18.75-7.50L18.75-15L3.75-15L3.75-18.75L0-18.75L0-26.25L3.75-26.25L3.75-30L22.50-30L22.50-26.25L26.25-26.25L26.25-22.50L18.75-22.50L18.75-26.25L7.50-26.25L7.50-18.75L22.50-18.75L22.50-15L26.25-15L26.25-7.50L22.50-7.50L22.50-3.75ZM37.50-3.75L30-3.75L30-30L56.25-30L56.25-26.25L37.50-26.25L37.50-18.75L52.50-18.75L52.50-15L37.50-15L37.50-3.75ZM78.75-3.75L71.25-3.75L71.25-26.25L63.75-26.25L63.75-30L86.25-30L86.25-26.25L78.75-26.25L78.75-3.75Z"
-                      fill="url(#editing-shiny-gradient2)"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </Link>
-          </div>
-          <div className="hidden lg:inline-block w-6/12">
-            <div className="space-x-2">
+    <nav className="bg-white shadow-lg fixed top-0 w-full z-10">
+      <div className="max-w-screen-2xl mx-auto">
+        <div className="flex lg:text-left font-syne custom-black py-2 mx-4">
+          <div className="hidden lg:flex lg:flex-1 sm:order-1 py-4 pl-5">
+            <div className="space-x-3">
               <NavLink to="/" className="py-4 px-2">
                 Home
               </NavLink>
@@ -190,133 +55,121 @@ const Navbar = (props: NavbarProps) => {
                 Mint
               </NavLink>
               <NavLink to="/mysft" className="py-4 px-2">
-                MySFT
+                My-SFT
               </NavLink>
-              {/* <NavLink to="/search" className="py-4 px-2">
-                SearchSFT
-              </NavLink> */}
-              <button
-                className={`py-4 px-2 inline-flex justify-center dropdown--button`}
-                type="button"
-              >
-                Other
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="ml-2 h-5 w-5 group-hover:text-green-400"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <div className="bg-white rounded-b-md shadow-lg pt-6 top-14 w-28 py-2 z-50 dropdown--hide">
-                  <NavLink
-                    to="assets"
-                    className="p-1 block w-full whitespace-nowrap"
-                  >
-                    Assets
-                  </NavLink>
-                  <NavLink
-                    to="faq"
-                    className="p-1 mt-2 block w-full whitespace-nowrap"
-                  >
-                    FAQ
-                  </NavLink>
-                </div>
-              </button>
             </div>
           </div>
-          <div className="flex lg:mx-4">
-            <MintContainer>
-              {!isMobile && (
-                !wallet ? (
-                  <ConnectButton type="button">
-                    <p className="text-xs sm:w-22 md:w-28 text-center">Connect Wallet</p>
-                  </ConnectButton>
-              ) : (
-                <div className="border-2 rounded-md px-2 py-1 w-36 border-green-400">
-                  {wallet && (
-                    <p className="text-xs">
-                      <b>Wallet </b>
-                      {shortenAddress(wallet.publicKey.toBase58() || "")}
-                    </p>
-                  )}
-                  {wallet && (
-                    <p className="text-xs">
-                      <b>Balance</b> {(balanceState || 0).toLocaleString()} SOL
-                    </p>
-                  )}
-                </div>
-              ))}
-              {isMobile && (
-                <div className="border-2 rounded-md px-1 w-36 border-green-400">
-                  <p className="text-xs">
-                    Can't connect wallet from a mobile device, please use a computer
-                  </p>
-              </div>
-              )}
-            </MintContainer>
+          <div className="flex-1 justify-end sm:order-2 items-center text-center">
+            <div className="w-40">
+            <Link to="/">
+              <img src="/logo.svg" alt="SFT Logo" width="160" />
+            </Link>
+            </div>
           </div>
-          <div className="flex lg:hidden w-full justify-end mx-5">
-            <button
-              className={`menu ${
-                mobileNav ? "opened" : ""
-              } hover:bg-green-100 rounded-md`}
-              onClick={() => setMobileNav(!mobileNav)}
-              aria-label="Main Menu"
-            >
-              <svg width="30" height="30" viewBox="0 0 100 100">
-                <path
-                  className="line line1"
-                  d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"
-                />
-                <path className="line line2" d="M 20,50 H 80" />
-                <path
-                  className="line line3"
-                  d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"
-                />
-              </svg>
-            </button>
-          </div>
-          <div className="hidden lg:flex space-x-2 w-3/12 justify-center">
-            <a
-              href="https://twitter.com/SolanaFunkyTrolls"
-              target="_blank"
-              rel="noreferrer"
-              className="custom-black hover:text-green-400 transition duration-300"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                className="h-8 w-8"
+          <div className="flex justify-between space-x-10 sm:order-3">
+            <div className="hidden lg:flex items-center">
+              <MintContainer>
+                {!isMobile &&
+                  (!wallet ? (
+                    <ConnectButton
+                      type="button"
+                      className="wallet-btn bg-custom-black rounded-lg text-white px-4 py-4"
+                    >
+                      <p className="text-xs w-24 sm:w-24 md:w-28 text-center">
+                        Connect Wallet
+                      </p>
+                    </ConnectButton>
+                  ) : (
+                    <div className="border-b-2 border-r-2 py-2 w-44 border-green-400 underline-offset-2 pr-2">
+                      {wallet && (
+                        <div className="flex flex-row-reverse gap-2 justify-between">
+                          <p className="text-sm">
+                            <u>Wallet</u>
+                          </p>
+                          <p className="text-sm">
+                            {shortenAddress(wallet.publicKey.toBase58() || "")}
+                          </p>
+                        </div>
+                      )}
+                      {wallet && (
+                        <div className="flex flex-row-reverse gap-2 justify-between">
+                          <p className="text-sm">
+                            <u>Balance</u>
+                          </p>
+                          <p className="text-sm">
+                            {(balanceState || 0).toLocaleString()} SOL
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                {isMobile && (
+                  <div className="border-2 rounded-md px-1 w-36 border-green-400">
+                    <p className="text-xs">
+                      Can't connect wallet from a mobile device, please use a
+                      computer
+                    </p>
+                  </div>
+                )}
+              </MintContainer>
+            </div>
+            <div className="flex lg:hidden items-center pr-3">
+              <button
+                className={`menu ${
+                  mobileNav ? "opened" : ""
+                } hover:bg-green-100 rounded-md`}
+                onClick={() => setMobileNav(!mobileNav)}
+                aria-label="Main Menu"
               >
-                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-              </svg>
-            </a>
-            <a
-              href="https://discord.gg/eQWZ9c7Wbt"
-              target="_blank"
-              rel="noreferrer"
-              className="custom-black hover:text-green-400 transition duration-300"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                fill="currentColor"
-                className="h-8 w-8"
+                <svg width="40" height="40" viewBox="0 0 100 100">
+                  <path
+                    className="line line1"
+                    d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"
+                  />
+                  <path className="line line2" d="M 20,50 H 80" />
+                  <path
+                    className="line line3"
+                    d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div className="hidden space-x-3 p-4 items-center">
+              <a
+                href="https://twitter.com/SolanaFunkyTrolls"
+                target="_blank"
+                rel="noreferrer"
+                className="custom-black hover:text-green-400 transition duration-300"
               >
-                <path d="M297.216 243.2c0 15.616-11.52 28.416-26.112 28.416-14.336 0-26.112-12.8-26.112-28.416s11.52-28.416 26.112-28.416c14.592 0 26.112 12.8 26.112 28.416zm-119.552-28.416c-14.592 0-26.112 12.8-26.112 28.416s11.776 28.416 26.112 28.416c14.592 0 26.112-12.8 26.112-28.416.256-15.616-11.52-28.416-26.112-28.416zM448 52.736V512c-64.494-56.994-43.868-38.128-118.784-107.776l13.568 47.36H52.48C23.552 451.584 0 428.032 0 398.848V52.736C0 23.552 23.552 0 52.48 0h343.04C424.448 0 448 23.552 448 52.736zm-72.96 242.688c0-82.432-36.864-149.248-36.864-149.248-36.864-27.648-71.936-26.88-71.936-26.88l-3.584 4.096c43.52 13.312 63.744 32.512 63.744 32.512-60.811-33.329-132.244-33.335-191.232-7.424-9.472 4.352-15.104 7.424-15.104 7.424s21.248-20.224 67.328-33.536l-2.56-3.072s-35.072-.768-71.936 26.88c0 0-36.864 66.816-36.864 149.248 0 0 21.504 37.12 78.08 38.912 0 0 9.472-11.52 17.152-21.248-32.512-9.728-44.8-30.208-44.8-30.208 3.766 2.636 9.976 6.053 10.496 6.4 43.21 24.198 104.588 32.126 159.744 8.96 8.96-3.328 18.944-8.192 29.44-15.104 0 0-12.8 20.992-46.336 30.464 7.68 9.728 16.896 20.736 16.896 20.736 56.576-1.792 78.336-38.912 78.336-38.912z" />
-              </svg>
-            </a>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  className="h-8 w-8"
+                >
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                </svg>
+              </a>
+              <a
+                href="https://discord.gg/eQWZ9c7Wbt"
+                target="_blank"
+                rel="noreferrer"
+                className="custom-black hover:text-green-400 transition duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512"
+                  fill="currentColor"
+                  className="h-8 w-8"
+                >
+                  <path d="M297.216 243.2c0 15.616-11.52 28.416-26.112 28.416-14.336 0-26.112-12.8-26.112-28.416s11.52-28.416 26.112-28.416c14.592 0 26.112 12.8 26.112 28.416zm-119.552-28.416c-14.592 0-26.112 12.8-26.112 28.416s11.776 28.416 26.112 28.416c14.592 0 26.112-12.8 26.112-28.416.256-15.616-11.52-28.416-26.112-28.416zM448 52.736V512c-64.494-56.994-43.868-38.128-118.784-107.776l13.568 47.36H52.48C23.552 451.584 0 428.032 0 398.848V52.736C0 23.552 23.552 0 52.48 0h343.04C424.448 0 448 23.552 448 52.736zm-72.96 242.688c0-82.432-36.864-149.248-36.864-149.248-36.864-27.648-71.936-26.88-71.936-26.88l-3.584 4.096c43.52 13.312 63.744 32.512 63.744 32.512-60.811-33.329-132.244-33.335-191.232-7.424-9.472 4.352-15.104 7.424-15.104 7.424s21.248-20.224 67.328-33.536l-2.56-3.072s-35.072-.768-71.936 26.88c0 0-36.864 66.816-36.864 149.248 0 0 21.504 37.12 78.08 38.912 0 0 9.472-11.52 17.152-21.248-32.512-9.728-44.8-30.208-44.8-30.208 3.766 2.636 9.976 6.053 10.496 6.4 43.21 24.198 104.588 32.126 159.744 8.96 8.96-3.328 18.944-8.192 29.44-15.104 0 0-12.8 20.992-46.336 30.464 7.68 9.728 16.896 20.736 16.896 20.736 56.576-1.792 78.336-38.912 78.336-38.912z" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
         <div
-          className={`lg:hidden shadow-lg text-xl w-full items-center custom-black bg-white z-10 p-4 ${
+          className={`lg:hidden shadow-lg text-xl w-full items-center custom-black bg-white z-10 p-4 order-3 ${
             mobileNav ? "block" : "hidden"
           }`}
         >
@@ -333,22 +186,7 @@ const Navbar = (props: NavbarProps) => {
             </li>
             <li>
               <NavLink to="mysft" className="block py-4 px-2">
-                MySFT
-              </NavLink>
-            </li>
-            {/* <li>
-              <NavLink to="search" className="block py-4 px-2">
-                SearchSFT
-              </NavLink>
-            </li> */}
-            <li>
-              <NavLink to="assets" className="block py-4 px-2">
-                Assets
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="faq" className="block py-4 px-2">
-                FAQ
+                My-SFT
               </NavLink>
             </li>
             <li>
@@ -368,7 +206,7 @@ const Navbar = (props: NavbarProps) => {
                   </svg>
                 </a>
                 <a
-                  href="https://discord.gg/eQWZ9c7Wbt"
+                  href="https://discord.com/invite/eQWZ9c7Wbt"
                   target="_blank"
                   rel="noreferrer"
                   className="ml-8"
