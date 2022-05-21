@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap");
 
 :root {
   --sblack: 25, 28, 36;
@@ -164,22 +164,22 @@ button.wallet-btn:hover {
 
 .nav-font {
   color: #191c25;
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
 }
 
 .font-syne {
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
 }
 
-.underline-offset-2	{
+.underline-offset-2 {
   text-underline-offset: 2px;
 }
 
-.underline-offset-4	{
+.underline-offset-4 {
   text-underline-offset: 4px;
 }
 
-.underline-offset-6	{
+.underline-offset-6 {
   text-underline-offset: 8px;
 }
 
@@ -195,4 +195,29 @@ button.wallet-btn:hover {
   opacity: 1;
   transform: none;
   visibility: visible;
+}
+
+button.mint-btn {
+  border: 2px solid rgb(var(--sblack)) !important;
+  background-color: rgb(var(--sblack)) !important;
+}
+
+button.mint-btn:hover {
+  border: 2px solid rgba(52, 211, 153, 1) !important;
+  background-color: white !important;
+  color: rgba(52, 211, 153, 1) !important;
+  transition-duration: 300ms !important;
+}
+
+.MuiLinearProgress-colorPrimary {
+  background-color: rgb(24, 99, 71) !important;
+  color: red !important;
+}
+
+.MuiLinearProgress-barColorPrimary {
+  background-color: rgba(52, 211, 153, 1) !important;
+}
+
+.MuiLinearProgress-bar2Indeterminate {
+  background-color: rgb(24, 99, 71) !important;
 }

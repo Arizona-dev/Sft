@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Countdown from "react-countdown";
-import { Button, CircularProgress, Snackbar } from "@material-ui/core";
+import { Button, LinearProgress, Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import confetti from "canvas-confetti";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,16 +25,7 @@ const CounterText = styled.span``;
 
 const MintContainer = styled.div``;
 
-const MintButton = styled(Button)`
-  background-color: rgba(99, 102, 241, 1);
-  color: white;
-  } :hover {
-    background-color: rgba(120, 130, 255, 1);
-    color: white;
-  }
-`;
-
-const Loader = styled(CircularProgress)``;
+const MintButton = styled(Button)``;
 
 const presaleSupply = Number(process.env.PRESALE_SUPPLY) ?? 0;
 
@@ -130,7 +121,11 @@ const Mint = (props: MintProps) => {
             message: "Congratulations! Mint succeeded! 🎉",
             severity: "success",
           });
-          confetti();
+          confetti({
+            particleCount: 400,
+            spread: 100,
+            origin: { y: 0.7 },
+          });
           setLoading(false);
           refreshCandyMachineState();
         } else {
@@ -193,7 +188,7 @@ const Mint = (props: MintProps) => {
           {alertState.message}
         </Alert>
       </Snackbar>
-      <div className="h-full flex">
+      <div className="h-full flex mt-20">
         <div className="flex-1 flex flex-col overflow-hidden m-8">
           {/* Main content */}
           <div className="flex-1 flex items-stretch overflow-hidden">
@@ -213,13 +208,6 @@ const Mint = (props: MintProps) => {
                   Solana Funky Trolls
                 </h1>
                 <section className="mt-2">
-                  <div className="aspect-w-2 aspect-h-3 rounded-nft overflow-hidden sm:col-span-4 lg:col-span-5">
-                    <img
-                      src="/treasure.gif"
-                      alt="SFT treasure chest"
-                      className="object-center object-cover mx-auto"
-                    />
-                  </div>
                   <div className="border-2 shadow-md rounded-md border-purple-200 p-4">
                     <div className="">
                       <p className="font-bold text-green-500">About SFT's :</p>
@@ -279,7 +267,7 @@ const Mint = (props: MintProps) => {
                       <div className="mt-10 sm:mt-0">
                         <MintContainer>
                           {!wallet ? (
-                            <ConnectButton type="button">
+                            <ConnectButton type="button" className="wallet-btn">
                               <p className="text-xs sm:w-22 md:w-28 text-center">
                                 Connect your wallet to mint
                               </p>
@@ -299,25 +287,24 @@ const Mint = (props: MintProps) => {
                                 <MintButton
                                   disabled={isSoldOut || isMinting || !isActive}
                                   onClick={onMint}
-                                  variant="contained"
+                                  className="mint-btn bg-custom-black rounded-lg text-white p-5 px-10 md:px-15 font-syne"
                                 >
                                   {isSoldOut ? (
-                                    <p className="text-lg w-44 text-center">
-                                      Sold out
-                                    </p>
+                                    <p className="w-44 text-center">Sold out</p>
                                   ) : isActive ? (
                                     isMinting ? (
                                       <div className="">
-                                        <Loader />
-                                        <p className="text-indigo-500 pl-4">
+                                        <p className="text-green-400 px-2 mb-1">
                                           Approve transaction from your wallet.{" "}
-                                          <br />
-                                          Minting will take a few seconds please
+                                        </p>
+                                        <LinearProgress color="primary" />
+                                        <p className="text-green-400 px-2 mt-1">
+                                          Minting will take few seconds please
                                           wait.
                                         </p>
                                       </div>
                                     ) : (
-                                      <p className="text-lg w-28 text-center">
+                                      <p className="w-28 text-center">
                                         Mint now!
                                       </p>
                                     )

@@ -18,8 +18,8 @@ export const ConfettiProvider = ({ children = null as any }) => {
         confettiRef
           .current({
             particleCount: 400,
-            spread: 160,
-            origin: { y: 0.3 },
+            spread: 140,
+            origin: { y: 0.7 },
           })
           ?.finally(() => {
             if (canvasRef.current) {
@@ -45,7 +45,7 @@ export const ConfettiProvider = ({ children = null as any }) => {
     width: '100vw',
     height: '100vh',
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 11,
     top: 0,
     left: 0,
   };
