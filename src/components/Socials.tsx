@@ -9,28 +9,28 @@ const Socials: React.FC = () => {
             THE <span className="lg:w-full md:block">TEAM</span>
           </h3>
         </div>
-        <div className="md:w-1/2 text-base grid grid-cols-2 lg:grid-cols-3 gap-5 max-w-3xl">
-          <div className="">
+        <div className="md:w-1/2 text-base max-w-xl font-syne grid grid-cols-2 gap-5">
+          <div>
             <a
               href="https://twitter.com/themaze_eth"
               target="_blank"
               rel="noreferrer"
             >
               <img src="/assets/images/team/themaze.png" alt="sft_maze" />
-              <p className="font-syne font-bold uppercase pt-5">@themaze_eth</p>
+              <p className="font-bold uppercase pt-5">@themaze_eth</p>
             </a>
-            <p className=" text-sm">Artist</p>
+            <p className="text-sm">Artist</p>
           </div>
-          <div className="">
+          <div>
             <a
               href="https://twitter.com/Zhenzhe_"
               target="_blank"
               rel="noreferrer"
             >
               <img src="/assets/images/team/zhen.png" alt="sft_zhen" />
-              <p className="font-syne font-bold uppercase pt-5">@Zhenzhe_</p>
+              <p className="font-bold uppercase pt-5">@Zhenzhe_</p>
             </a>
-            <p className=" text-sm">Engineering</p>
+            <p className="text-sm">Engineering</p>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@ const Socials: React.FC = () => {
                 <span className="pl-3 text-xs md:text-sm font-medium">Join Discord</span>
               </a>
               <a
-                href="https://discord.com/invite/eQWZ9c7Wbt"
+                href="https://twitter.com/SolanaFunkyTrolls"
                 target="_blank"
                 rel="noreferrer"
                 className="button-sft bg-custom-black rounded-lg text-white p-5 w-48"
