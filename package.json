@@ -2,6 +2,7 @@
   "name": "sft-candy-machine-mint",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "@craco/craco": "^6.4.0",
     "@headlessui/react": "^1.4.2",
