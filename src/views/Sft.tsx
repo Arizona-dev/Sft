@@ -124,7 +124,7 @@ export default function Sft(props: SftProps) {
 
   return (
     <>
-      <div className="h-full flex mt-20">
+      <div className="content flex">
         <div className="flex-1 flex flex-col overflow-hidden m-8">
           {/* Main content */}
           <div className="flex-1 flex items-stretch overflow-hidden">

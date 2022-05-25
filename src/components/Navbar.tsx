@@ -43,7 +43,7 @@ const Navbar = (props: NavbarProps) => {
   }, [wallet, props.connection, setWalletBalance, setWalletAddress]);
 
   return (
-    <nav className="bg-white shadow-lg fixed top-0 w-full z-10">
+    <nav className="bg-white shadow-lg sticky w-full">
       <div className="max-w-screen-2xl mx-auto">
         <div className="flex lg:text-left font-syne custom-black py-2 mx-4">
           <div className="hidden lg:flex lg:flex-1 sm:order-1 py-4 pl-5">
@@ -60,10 +60,10 @@ const Navbar = (props: NavbarProps) => {
             </div>
           </div>
           <div className="flex-1 justify-end sm:order-2 items-center text-center">
-            <div className="w-40">
-            <Link to="/">
-              <img src="/logo.svg" alt="SFT Logo" width="160" />
-            </Link>
+            <div className="w-24 md:w-40">
+              <Link to="/">
+                <img src="/logo.svg" alt="SFT Logo" width="160" />
+              </Link>
             </div>
           </div>
           <div className="flex justify-between space-x-10 sm:order-3">
@@ -104,16 +104,16 @@ const Navbar = (props: NavbarProps) => {
                     </div>
                   ))}
                 {isMobile && (
-                  <div className="border-2 rounded-md px-1 w-36 border-green-400">
+                  <div className="border-b-2 border-r-2 p-1 w-44 border-green-400">
                     <p className="text-xs">
-                      Can't connect wallet from a mobile device, please use a
-                      computer
+                      Your device is not supported, please use a computer to
+                      connect to your wallet
                     </p>
                   </div>
                 )}
               </MintContainer>
             </div>
-            <div className="flex lg:hidden items-center pr-3">
+            <div className="flex lg:hidden items-center">
               <button
                 className={`menu ${
                   mobileNav ? "opened" : ""
@@ -169,8 +169,8 @@ const Navbar = (props: NavbarProps) => {
           </div>
         </div>
         <div
-          className={`lg:hidden shadow-lg text-xl w-full items-center custom-black bg-white z-10 p-4 order-3 ${
-            mobileNav ? "block" : "hidden"
+          className={`fade-in-nav  text-center shadow-lg text-xl w-full items-center bg-white p-6 order-3 ${
+            mobileNav ? "is-visible" : ""
           }`}
         >
           <ul>
@@ -190,7 +190,7 @@ const Navbar = (props: NavbarProps) => {
               </NavLink>
             </li>
             <li>
-              <div className="flex flex-wrap justify-center py-4">
+              <div className="flex flex-wrap justify-center pt-5">
                 <a
                   href="https://twitter.com/SolanaFunkyTrolls"
                   target="_blank"

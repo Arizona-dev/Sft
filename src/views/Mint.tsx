@@ -175,7 +175,7 @@ const Mint = (props: MintProps) => {
   ]);
 
   return (
-    <>
+    <div className="">
       <Snackbar
         open={alertState.open}
         autoHideDuration={6000}
@@ -188,7 +188,7 @@ const Mint = (props: MintProps) => {
           {alertState.message}
         </Alert>
       </Snackbar>
-      <div className="h-full flex mt-20">
+      <div className="content flex">
         <div className="flex-1 flex flex-col overflow-hidden m-8">
           {/* Main content */}
           <div className="flex-1 flex items-stretch overflow-hidden">
@@ -332,7 +332,7 @@ const Mint = (props: MintProps) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

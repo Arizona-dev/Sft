@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./components/Navbar";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 
 import Home from "./views/Home";
 import Mint from "./views/Mint";
@@ -115,7 +115,7 @@ const App = () => {
               />
               <Route path="/mysft" element={<Sft connection={connection} />} />
             </Routes>
-            {/* <Footer /> */}
+            <Footer />
           </WalletDialogProvider>
         </WalletProvider>
       </ConnectionProvider>
