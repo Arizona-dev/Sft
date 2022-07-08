@@ -41,9 +41,16 @@ const Navbar = (props: NavbarProps) => {
       }
     })();
   }, [wallet, props.connection, setWalletBalance, setWalletAddress]);
+  useEffect(() => {
+    if (mobileNav) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [mobileNav]);
 
   return (
-    <nav className="bg-white shadow-lg sticky w-full">
+    <nav className="bg-white shadow-lg top-0 z-30 sticky w-full">
       <div className="max-w-screen-2xl mx-auto">
         <div className="flex lg:text-left font-syne custom-black py-2 mx-4">
           <div className="hidden lg:flex lg:flex-1 sm:order-1 py-4 pl-5">
@@ -136,10 +143,10 @@ const Navbar = (props: NavbarProps) => {
             </div>
             <div className="hidden space-x-3 p-4 items-center">
               <a
-                href="https://twitter.com/SolanaFunkyTrolls"
+                href="https://twitter.com/S_FunkyTrolls"
                 target="_blank"
                 rel="noreferrer"
-                className="custom-black hover:text-green-400 transition duration-300"
+                className="hover:text-green-400 transition duration-300"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +161,7 @@ const Navbar = (props: NavbarProps) => {
                 href="https://discord.gg/eQWZ9c7Wbt"
                 target="_blank"
                 rel="noreferrer"
-                className="custom-black hover:text-green-400 transition duration-300"
+                className="hover:text-green-400 transition duration-300"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -168,61 +175,74 @@ const Navbar = (props: NavbarProps) => {
             </div>
           </div>
         </div>
-        <div
-          className={`fade-in-nav  text-center shadow-lg text-xl w-full items-center bg-white p-6 order-3 ${
-            mobileNav ? "is-visible" : ""
-          }`}
-        >
-          <ul>
-            <li>
-              <NavLink to="/" className="block py-4 px-2">
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="mint" className="block py-4 px-2">
-                Mint
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="mysft" className="block py-4 px-2">
-                My-SFT
-              </NavLink>
-            </li>
-            <li>
-              <div className="flex flex-wrap justify-center pt-5">
-                <a
-                  href="https://twitter.com/SolanaFunkyTrolls"
-                  target="_blank"
-                  rel="noreferrer"
+        <div className={`fade-in-nav min-h-full min-w-full bg-gray-900 bg-opacity-70 ${mobileNav ? "is-visible" : ""}`} onClick={() => setMobileNav(!mobileNav)}>
+          <hr></hr>
+          <div
+            className="text-center shadow-lg text-xl w-full items-center bg-white p-6 order-3"
+          >
+            <ul>
+              <li>
+                <NavLink
+                  to="/"
+                  className="block py-4 px-2"
+                  onClick={() => setMobileNav(!mobileNav)}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    className="h-10 w-10"
-                  >
-                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                  </svg>
-                </a>
-                <a
-                  href="https://discord.com/invite/eQWZ9c7Wbt"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="ml-8"
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="mint"
+                  className="block py-4 px-2"
+                  onClick={() => setMobileNav(!mobileNav)}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 448 512"
-                    fill="currentColor"
-                    className="h-10 w-10"
+                  Mint
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="mysft"
+                  className="block py-4 px-2"
+                  onClick={() => setMobileNav(!mobileNav)}
+                >
+                  My-SFT
+                </NavLink>
+              </li>
+              <li>
+                <div className="flex flex-wrap justify-center pt-5">
+                  <a
+                    href="https://twitter.com/S_FunkyTrolls"
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    <path d="M297.216 243.2c0 15.616-11.52 28.416-26.112 28.416-14.336 0-26.112-12.8-26.112-28.416s11.52-28.416 26.112-28.416c14.592 0 26.112 12.8 26.112 28.416zm-119.552-28.416c-14.592 0-26.112 12.8-26.112 28.416s11.776 28.416 26.112 28.416c14.592 0 26.112-12.8 26.112-28.416.256-15.616-11.52-28.416-26.112-28.416zM448 52.736V512c-64.494-56.994-43.868-38.128-118.784-107.776l13.568 47.36H52.48C23.552 451.584 0 428.032 0 398.848V52.736C0 23.552 23.552 0 52.48 0h343.04C424.448 0 448 23.552 448 52.736zm-72.96 242.688c0-82.432-36.864-149.248-36.864-149.248-36.864-27.648-71.936-26.88-71.936-26.88l-3.584 4.096c43.52 13.312 63.744 32.512 63.744 32.512-60.811-33.329-132.244-33.335-191.232-7.424-9.472 4.352-15.104 7.424-15.104 7.424s21.248-20.224 67.328-33.536l-2.56-3.072s-35.072-.768-71.936 26.88c0 0-36.864 66.816-36.864 149.248 0 0 21.504 37.12 78.08 38.912 0 0 9.472-11.52 17.152-21.248-32.512-9.728-44.8-30.208-44.8-30.208 3.766 2.636 9.976 6.053 10.496 6.4 43.21 24.198 104.588 32.126 159.744 8.96 8.96-3.328 18.944-8.192 29.44-15.104 0 0-12.8 20.992-46.336 30.464 7.68 9.728 16.896 20.736 16.896 20.736 56.576-1.792 78.336-38.912 78.336-38.912z" />
-                  </svg>
-                </a>
-              </div>
-            </li>
-          </ul>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      className="h-10 w-10"
+                    >
+                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://discord.com/invite/eQWZ9c7Wbt"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="ml-8"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      fill="currentColor"
+                      className="h-10 w-10"
+                    >
+                      <path d="M297.216 243.2c0 15.616-11.52 28.416-26.112 28.416-14.336 0-26.112-12.8-26.112-28.416s11.52-28.416 26.112-28.416c14.592 0 26.112 12.8 26.112 28.416zm-119.552-28.416c-14.592 0-26.112 12.8-26.112 28.416s11.776 28.416 26.112 28.416c14.592 0 26.112-12.8 26.112-28.416.256-15.616-11.52-28.416-26.112-28.416zM448 52.736V512c-64.494-56.994-43.868-38.128-118.784-107.776l13.568 47.36H52.48C23.552 451.584 0 428.032 0 398.848V52.736C0 23.552 23.552 0 52.48 0h343.04C424.448 0 448 23.552 448 52.736zm-72.96 242.688c0-82.432-36.864-149.248-36.864-149.248-36.864-27.648-71.936-26.88-71.936-26.88l-3.584 4.096c43.52 13.312 63.744 32.512 63.744 32.512-60.811-33.329-132.244-33.335-191.232-7.424-9.472 4.352-15.104 7.424-15.104 7.424s21.248-20.224 67.328-33.536l-2.56-3.072s-35.072-.768-71.936 26.88c0 0-36.864 66.816-36.864 149.248 0 0 21.504 37.12 78.08 38.912 0 0 9.472-11.52 17.152-21.248-32.512-9.728-44.8-30.208-44.8-30.208 3.766 2.636 9.976 6.053 10.496 6.4 43.21 24.198 104.588 32.126 159.744 8.96 8.96-3.328 18.944-8.192 29.44-15.104 0 0-12.8 20.992-46.336 30.464 7.68 9.728 16.896 20.736 16.896 20.736 56.576-1.792 78.336-38.912 78.336-38.912z" />
+                    </svg>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>

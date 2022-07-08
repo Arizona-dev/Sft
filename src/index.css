@@ -204,8 +204,16 @@ button.mint-btn:hover {
   background-color: rgb(24, 99, 71) !important;
 }
 
+.MuiDialogTitle-root {
+  background-color: rgb(52, 211, 153) !important;
+}
+
+.MuiSvgIcon-root {
+  fill: white !important;
+}
+
 .content {
-  min-height: calc(100vh - 152px);
+  min-height: calc(100vh);
 }
 
 .f-social-icon:hover img {
@@ -217,14 +225,18 @@ button.mint-btn:hover {
 .fade-in-nav {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease-out;
-  position: absolute;
+  transition: opacity 0.3s ease-in;
+  position: fixed;
+  display: none;
 }
 
 .fade-in-nav.is-visible {
   opacity: 1;
   visibility: visible;
-  position: absolute;
+  position: fixed;
+  top: 60px;
+  display: inline-block;
+  z-index: 30;
 }
 
 .roadmap-divider {
@@ -242,5 +254,15 @@ button.mint-btn:hover {
     border: 4px solid rgb(52, 211, 153);
     border-radius: 0%;
     height: 94%;
+  }
+}
+
+.masthead-container {
+  min-height: calc(100vh - 60px);
+}
+
+@media (min-width: 768px) {
+  .masthead-container {
+    min-height: calc(100vh - 80px);
   }
 }

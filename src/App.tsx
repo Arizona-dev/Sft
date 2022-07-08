@@ -16,10 +16,8 @@ import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import {
   getPhantomWallet,
-  getSlopeWallet,
   getSolflareWallet,
   getSolletWallet,
-  getSolletExtensionWallet,
 } from "@solana/wallet-adapter-wallets";
 
 import {
@@ -82,10 +80,8 @@ const App = () => {
   const wallets = useMemo(
     () => [
       getPhantomWallet(),
-      getSlopeWallet(),
       getSolflareWallet(),
       getSolletWallet({ network }),
-      getSolletExtensionWallet({ network }),
     ],
     []
   );

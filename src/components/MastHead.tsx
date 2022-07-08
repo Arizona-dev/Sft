@@ -4,12 +4,13 @@ import FadeInSection from "./FadeInSection";
 const MastHead: React.FC = () => {
   return (
     <>
-      <div
-        className="flex flex-col items-center justify-center"
-        style={{ minHeight: "calc(100vh - 60px)" }}
-      >
+      <div className="flex flex-col items-center justify-center masthead-container">
+        {/* <div className="ocean">
+          <div className="wave"></div>
+          <div className="wave"></div>
+        </div> */}
         <FadeInSection>
-          <div className="font-syne text-center flex flex-col mx-4 -mt-20">
+          <div className="font-syne text-center flex flex-col mx-4 -mt-20 z-10">
             <h1 className="font-medium text-5xl lg:text-6xl mb-3">
               We are Solana Funky Trolls
             </h1>
@@ -30,7 +31,7 @@ const MastHead: React.FC = () => {
         {/* What is solana funky trolls? */}
         <FadeInSection>
           <div className="md:flex py-10 mx-6 md:mx-10">
-            <div className="md:w-1/2 lg:text-right sm:flex lg:flex-row-reverse relative pr-4 md:pr-0">
+            <div className="md:w-1/2 lg:text-right sm:flex lg:flex-row-reverse pr-4 md:pr-0">
               <div className="lg:text-right lg:pr-24">
                 <p className="text-xl md:text-2xl lg:text-4xl font-syne font-bold text-green-400">
                   WHAT IS
@@ -61,7 +62,7 @@ const MastHead: React.FC = () => {
         {/* How much sft can I mint? */}
         <FadeInSection>
           <div className="md:flex py-10 mx-6 md:mx-10">
-            <div className="md:w-1/2 lg:text-right sm:flex lg:flex-row-reverse relative pr-4 md:pr-0">
+            <div className="md:w-1/2 lg:text-right sm:flex lg:flex-row-reverse pr-4 md:pr-0">
               <div className="lg:text-right lg:pr-24">
                 <p className="text-xl md:text-2xl lg:text-4xl font-syne font-bold text-green-400">
                   HOW MUCH SFT
@@ -84,7 +85,7 @@ const MastHead: React.FC = () => {
         {/* Where is stored the metadata? */}
         <FadeInSection>
           <div className="md:flex py-10 mx-6 md:mx-10">
-            <div className="md:w-1/2 lg:text-right sm:flex lg:flex-row-reverse relative pr-4 md:pr-0">
+            <div className="md:w-1/2 lg:text-right sm:flex lg:flex-row-reverse pr-4 md:pr-0">
               <div className="lg:text-right lg:pr-24">
                 <p className="text-xl md:text-2xl lg:text-4xl font-syne font-bold text-green-400">
                   WHERE IS STORED

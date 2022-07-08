@@ -44,7 +44,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "craco start && postcss src/css/app.css -o public/app.css",
+    "start": "PORT=16500 craco start && postcss src/css/app.css -o public/app.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

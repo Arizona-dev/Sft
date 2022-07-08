@@ -4,11 +4,11 @@ import Socials from "../components/Socials"
 
 const Home: React.FC = () => {
   return (
-    <div className="">
+    <>
       <MastHead />
       <Roadmap />
       <Socials />
-    </div>
+    </>
   )
 }
 

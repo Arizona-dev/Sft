@@ -23,7 +23,7 @@ const Footer = () => {
             </span>
           </a>
           <a
-            href="https://twitter.com/SolanaFunkyTrolls"
+            href="https://twitter.com/S_FunkyTrolls"
             target="_blank"
             rel="noreferrer"
             className="flex flex-col sm:flex-row justify-center items-center text-white p-1"

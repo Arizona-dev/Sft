@@ -220,9 +220,8 @@ const Mint = (props: MintProps) => {
                         endless!
                       </p>
                       <p className="p-4">
-                        Presale supply is only <b>500</b> units at <b>1.5</b>{" "}
-                        SOL. After the presale, available supply is going to be{" "}
-                        <b>9450</b> units at <b>2</b> SOL. <br></br>
+                        Available supply is going to be <b>9450</b> units at{" "}
+                        <b>2</b> SOL. <br></br>
                         <b>50</b> units are kept for marketing purposes and
                         giveaways.
                       </p>
@@ -232,10 +231,7 @@ const Mint = (props: MintProps) => {
                 <section className="mt-8">
                   <div className="flex flex-col w-full">
                     <span className="border-2 py-1 w-full text-center shadow-md rounded-md border-purple-200 mb-6">
-                      <h3 className="text-lg font-normal">
-                        <span className="mr-3">💎</span>MINT IT !
-                        <span className="ml-2">💎</span>
-                      </h3>
+                      <h3 className="text-lg font-normal">MINT IT !</h3>
                     </span>
                     <div className="flex flex-col sm:flex-row mt-2 justify-around items-center my-5">
                       <div className="text-sm md:text-base font-mono w-1/2">
@@ -256,12 +252,7 @@ const Mint = (props: MintProps) => {
                               <p className="mr-3 font-bold">Supply left: </p>
                               {itemsRemaining}
                             </>
-                          ) : (
-                            <p className="font-bold">
-                              Supply left: Connect wallet to see remaining
-                              supply
-                            </p>
-                          )}
+                          ) : ''}
                         </div>
                       </div>
                       <div className="mt-10 sm:mt-0">

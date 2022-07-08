@@ -7,11 +7,11 @@ const Roadmap: React.FC = () => {
       <div className="bg-black text-white sm:px-5 pb-4">
         <div className="mx-auto flex flex-col items-start lg:flex-row">
           <div className="flex flex-col w-full sticky lg:w-1/3 px-4 lg:px-8 pt-12">
-            <p className="text-3xl md:text-4xl text-green-400 uppercase mb-2 font-syne">
-              Roadmap
+            <p className="text-3xl md:text-4xl text-green-400 mb-2 font-syne">
+              ROADMAP
             </p>
             <p className="text-sm md:text-base mb-4">
-              Check out our roadmap for Solana Funky Trolls !
+              Check out our roadmap !
               <br />
               Go through all the steps to know the exact process of the fest.
             </p>
@@ -29,7 +29,7 @@ const Roadmap: React.FC = () => {
                 <div className="mb-8 flex justify-between sm:flex-row-reverse items-center w-full ">
                   <div className="hidden sm:inline-block order-1 sm:w-6/12"></div>
                   <div className="order-1 sm:w-6/12 px-6 sm:px-8 py-4 sm:text-right">
-                    <p className="mb-3 text-base text-green-400">
+                    <p className="mb-3 text-sm text-green-400">
                       Stage 1 - Q2 2022
                     </p>
                     <h4 className="mb-3 font-bold font-syne text-lg md:text-2xl">
@@ -44,7 +44,7 @@ const Roadmap: React.FC = () => {
                 <div className="mb-8 flex justify-between items-center w-full">
                   <div className="hidden sm:flex order-1 w-6/12"></div>
                   <div className="order-1 sm:w-6/12 px-6 sm:px-8 py-4 text-left">
-                    <p className="mb-3 text-base text-green-400">
+                    <p className="mb-3 text-sm text-green-400">
                       Stage 2 - Q3 2022
                     </p>
                     <h4 className="mb-3 font-bold font-syne text-lg md:text-2xl">
@@ -60,7 +60,7 @@ const Roadmap: React.FC = () => {
                 <div className="mb-8 flex justify-between sm:flex-row-reverse items-center w-full ">
                   <div className="hidden sm:flex order-1 sm:w-6/12"></div>
                   <div className="order-1 sm:w-6/12 px-6 sm:px-8 py-4 sm:text-right">
-                    <p className="mb-3 text-base text-green-400">
+                    <p className="mb-3 text-sm text-green-400">
                       Stage 3 - Q3 2022
                     </p>
                     <h4 className="mb-3 font-bold font-syne text-lg md:text-2xl">
@@ -76,7 +76,7 @@ const Roadmap: React.FC = () => {
                 <div className="mb-8 flex justify-between items-center w-full">
                   <div className="hidden sm:flex order-1 w-6/12"></div>
                   <div className="order-1 sm:w-6/12 px-6 sm:px-8 py-4 text-left">
-                    <p className="mb-3 text-base text-green-400">
+                    <p className="mb-3 text-sm text-green-400">
                       Stage 4 - Q3 2022
                     </p>
                     <h4 className="mb-3 font-bold font-syne text-lg md:text-2xl">
@@ -92,7 +92,7 @@ const Roadmap: React.FC = () => {
                 <div className="mb-8 flex justify-between sm:flex-row-reverse items-center w-full ">
                   <div className="hidden sm:flex order-1 sm:w-6/12"></div>
                   <div className="order-1 sm:w-6/12 px-6 sm:px-8 py-4 sm:text-right">
-                    <p className="mb-3 text-base text-green-400">
+                    <p className="mb-3 text-sm text-green-400">
                       Stage 5 - Q4 2022
                     </p>
                     <h4 className="mb-3 font-bold font-syne text-lg md:text-2xl">
@@ -108,7 +108,7 @@ const Roadmap: React.FC = () => {
                 <div className="mb-8 flex justify-between items-center w-full">
                   <div className="hidden sm:flex order-1 w-6/12"></div>
                   <div className="order-1 sm:w-6/12 px-6 sm:px-8 py-4 text-left">
-                    <p className="mb-3 text-base text-green-400">
+                    <p className="mb-3 text-sm text-green-400">
                       Stage 6 - Q2 2023
                     </p>
                     <h4 className="mb-3 font-bold font-syne text-lg md:text-2xl">

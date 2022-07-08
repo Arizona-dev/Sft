@@ -3,10 +3,10 @@ import FadeInSection from "./FadeInSection";
 
 const Socials: React.FC = () => {
   return (
-    <div className="mx-auto color-dark-text">
+    <div className="mx-auto">
       <FadeInSection>
         <div className="md:flex py-20 mx-6 md:mx-10 md:px-0 lg:py-32">
-          <div className="md:w-1/2 lg:text-right md:flex lg:flex-row-reverse lg:pr-24 relative">
+          <div className="md:w-1/2 lg:text-right md:flex lg:flex-row-reverse lg:pr-24">
             <h3 className="pb-5 md:pb-0 text-xl md:text-2xl lg:text-4xl lg:ml-44 font-syne font-bold">
               THE <span className="lg:w-full md:block">TEAM</span>
             </h3>
@@ -42,7 +42,7 @@ const Socials: React.FC = () => {
       <hr></hr>
       <div className="mx-auto color-dark-text">
         <div className="md:flex py-20 mx-6 md:mx-10 md:px-0 lg:py-32">
-          <div className="md:w-1/2 lg:text-right md:flex lg:flex-row-reverse lg:pr-24 relative">
+          <div className="md:w-1/2 lg:text-right md:flex lg:flex-row-reverse lg:pr-24">
             <h3 className="pb-5 md:pb-0 text-xl md:text-2xl lg:text-4xl lg:ml-44 font-syne font-bold">
               JOIN OUR
               <span className="lg:w-full md:block"> COMMUNITY</span>
@@ -70,7 +70,7 @@ const Socials: React.FC = () => {
                 </span>
               </a>
               <a
-                href="https://twitter.com/SolanaFunkyTrolls"
+                href="https://twitter.com/S_FunkyTrolls"
                 target="_blank"
                 rel="noreferrer"
                 className="flex flex-col sm:flex-row justify-center items-center button-sft bg-black rounded-lg text-white p-2 sm:p-5 w-48"
